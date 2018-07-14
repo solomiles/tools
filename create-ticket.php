@@ -1,16 +1,55 @@
-<?php
 
-
-  
-// function show_table(){
-//     $result = db_query("SELECT * FROM scam_pages");
-//     return $result; 
-//   }
-
-?>
 
 
 <?php include ('headers/header.php'); ?>
+
+<?php
+
+
+if( isset($_POST['btn-ticket']) ) {
+  
+
+
+  $from = trim($_POST['from']);
+  $from = strip_tags($from);
+  $from = htmlspecialchars($from);
+
+  $description = trim($_POST['description']);
+  $description = strip_tags($description);
+  $description = htmlspecialchars($description);  
+
+  $service = trim($_POST['service']);
+  $service = strip_tags($service);
+  $service = htmlspecialchars($service);
+
+  $subject = trim($_POST['subject']);
+  $subject = strip_tags($subject);
+  $subject = htmlspecialchars($subject);
+
+  function generateRandomString($length = 6) {
+    $characters = '0123456789';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+$item_id = generateRandomString();
+
+
+
+  $result = db_query("INSERT INTO tickets(Ticket_from,Ticket_no,Service,Subject,Description) VALUES('$from','$item_id','$service','$subject','$description')");
+  if ($result == 1) {
+    $errMSG = " Saved Successfully!";
+  }
+  else {
+    $errMSG = "Something went wrong, try again later..."; 
+  } 
+}
+
+
+?>
 
 
 <div class="app-content content container-fluid">
@@ -36,17 +75,25 @@
                 </div>
             </div>
               <div class="card-block">
-            <form class="form">
+                <div >
+                  <?php
+
+                   echo "
+                    <p class=' alert-success'>$errMSG</p>
+                    ";
+                  ?>
+                </div>
+            <form class="form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
               <div class="form-body">
 
                 <div class="form-group">
                   <div class="form-group">
                     <label>From:</label>
-                  <input type="text" id="" class="form-control" placeholder="Username or Email" name="from">
+                  <input type="text" id="" value="<?php echo $user ?>" class="form-control" placeholder="Username or Email" name="from">
                 </div>
 
                    <label>Service</label>
-                      <select id="" name="country" class="form-control">
+                      <select id="" name="service" class="form-control">
                           <option>Choose Service</option>
                           <option value="I want to be a seller" title="I want to be a seller">I want to be a seller</option>
                         </select>
@@ -64,7 +111,7 @@
                 </div>
 
               <div class="form-actions center">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" name="btn-ticket" class="btn btn-primary">
                   <i class="icon-check2"></i> Submit Ticket
                 </button>
               </div>
