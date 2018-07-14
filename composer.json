@@ -1,0 +1,34 @@
+{
+  "name": "pixinvent/robust-free-bootstrap-admin-template",
+  "description": "Robust admin tools.",
+  "homepage": "https://pixinvent.com/",
+  "keywords": [
+    "bootstrap",
+    "admin",
+    "admin-ui",
+    "dashboard",
+    "admin-dashboard",
+    "bootstrap-theme",
+    "admin-theme",
+    "admin-panel",
+    "css",
+    "js",
+    "sass",
+    "responsive",
+    "back-end",
+    "template",
+    "theme",
+    "web",
+    "admin"
+  ],
+  "authors": [
+    {
+      "name": "OSAIGHE SOLOMON",
+      "email": "osaighesolomon@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/pixinvent/robust-free-bootstrap-admin-template/issues"
+  }
+}
