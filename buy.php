@@ -24,7 +24,7 @@
 
       $get_item_id = productInformation();
 
-      $result = db_query("SELECT * FROM shell AND cpanels AND accounts AND cards AND email_list AND mailers AND scam_pages AND scripts AND smtps AND tools AND tutorials AND vps WHERE Item_id = '$get_item_id'");
+      $result = db_query("SELECT Seller FROM shell AND cpanels AND accounts AND cards AND email_list AND mailers AND scam_pages AND scripts AND smtps AND tools AND tutorials AND vps WHERE Item_id = '$get_item_id'");
        // print_r($result);
       $row = mysqli_fetch_array($result);
 

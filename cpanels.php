@@ -42,6 +42,7 @@
                       <table id="example" class="table table-striped table-bordered table-responsive table-hover table-condensed" style="width:100%">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Country</th>
                                 <th>Type</th>
                                 <th>SSL</th>
@@ -56,12 +57,13 @@
                             </tr>
                         </thead>
                       <tbody>
-                        <? while ( mysqli_fetch_assoc(show_table()) ) : ?>
+                        <?php $ok = mysqli_fetch_assoc(show_table()) ?>
 
                           <?php foreach ( show_table() as $row) :?>
                           <tr>
+                              <td><?php echo $row['Item_id']; ?> </td>
                               <td> <?php echo $row['Country']; ?></td>
-                              <td><img src="../Tool-B/images/<?php echo $row['Type']; ?>" width="50" height="13"></td>
+                              <td><img src="images/<?php echo $row['Type']; ?>" width="50" height="13"></td>
                               <td><?php echo $row['Cpanel_ssl']; ?></td>
                               <td><?php echo $row['TLD']; ?></td>
                               <td><?php echo $row['Hosting']; ?></td>
@@ -74,7 +76,7 @@
                           </tr>
 
                           <?php endforeach;?>
-                       <? endwhile; ?>
+                       
 
                         </tbody>
                       </table>

@@ -85,7 +85,8 @@ if ($error > 0){
  
 
   function show_table(){
-    $result = db_query("SELECT * FROM cpanels");
+    global $user;
+    $result = db_query("SELECT * FROM cpanels WHERE Seller = '$user'  ");
     return $result; 
   }
 
@@ -459,7 +460,7 @@ if ($error > 0){
                             </tr>
                         </thead>
                       <tbody>
-                        <? while ( mysqli_fetch_assoc(show_table()) ) : ?>
+                        <?php $ok = mysqli_fetch_assoc(show_table()) ?>
 
                           <?php foreach ( show_table() as $row) :?>
                           <tr>
@@ -490,7 +491,7 @@ if ($error > 0){
                           </tr>
 
                           <?php endforeach;?>
-                       <? endwhile; ?>
+                       
 
                         </tbody>
                       </table>

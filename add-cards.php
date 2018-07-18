@@ -75,7 +75,8 @@ $item_id = generateRandomString();
 <?php 
 
 function show_table(){
-    $result = db_query("SELECT * FROM cards");
+  global $user;
+    $result = db_query("SELECT * FROM cards WHERE Seller = '$user' ");
     return $result; 
   }
 
@@ -463,7 +464,7 @@ function show_table(){
                             </tr>
                         </thead>
                       <tbody>
-                        <? while ( mysqli_fetch_assoc(show_table()) ) : ?>
+                        <?php $ok = mysqli_fetch_assoc(show_table()) ?>
 
                           <?php foreach ( show_table() as $row) :?>
 
@@ -496,7 +497,7 @@ function show_table(){
 
                         <?php endforeach;?>
 
-                       <? endwhile; ?>
+                       
 
                         </tbody>
                       </table>

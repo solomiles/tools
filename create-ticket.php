@@ -1,6 +1,4 @@
 
-
-
 <?php include ('headers/header.php'); ?>
 
 <?php
@@ -50,6 +48,19 @@ $item_id = generateRandomString();
 
 
 ?>
+<?php
+
+
+  
+function show_table(){
+  global $user;
+    $result = db_query("SELECT * FROM tickets WHERE Ticket_from = '$user'");
+    return $result; 
+  }
+
+
+?>
+
 
 
 <div class="app-content content container-fluid">
@@ -119,7 +130,56 @@ $item_id = generateRandomString();
           </div>
               </div>
             </div>
-          </div>
+          </div><br>
+
+          <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">Ticket List</h5>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                        <li><a data-action="expand"><i class="icon-maximize"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+              <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                      <p class="card-text"><font color="red"><b>Please Click <a data-action="expand"><i class="icon-maximize"></i></a> To See Full Information .</b></font></p>
+
+                      <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Service</th>
+                                <th>Subject</th>
+                                <th>Description of Service or Product</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                      <tbody>
+                        <?php $ok = mysqli_fetch_assoc(show_table()) ?>
+
+                          <?php foreach ( show_table() as $row) :?>
+                          <tr>
+                              <td><?php echo $row['Ticket_no']; ?> </td>
+                              <td><?php echo $row['Service']; ?> </td>
+                              <td><?php echo $row['Subject']; ?> </td>
+                              <td><?php echo $row['Description']; ?> </td>
+                              <td><span class="btn mr-1 mb-1 btn-success btn-sm">Approved</span>
+                                <span class="btn mr-1 mb-1 btn-warning btn-sm">Pending</span></td>
+                          </tr>
+
+                        <?php endforeach;?>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
 <!-- end page content -->

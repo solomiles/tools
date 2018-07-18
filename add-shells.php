@@ -33,6 +33,10 @@ if( isset($_POST['btn-shells']) ) {
   $seller = strip_tags($seller);
   $seller = htmlspecialchars($seller);
 
+  $hosting = trim($_POST['hosting']);
+  $hosting = strip_tags($hosting);
+  $hosting = htmlspecialchars($hosting);
+
   $url = trim($_POST['url']);
   $url = strip_tags($url);
   $url = htmlspecialchars($url);
@@ -56,7 +60,7 @@ $item_id = generateRandomString();
           // $tld  = $object['tld'];
         
 
-  $result = db_query("INSERT INTO shell(Country,Item_id,Shell_ssl,TLD,OS,Information,URL,Price,Seller) VALUES('$country','$item_id','$ssl','$tld','$os','$information','$url','$price','$seller')");
+  $result = db_query("INSERT INTO shell(Country,Item_id,Shell_ssl,TLD,OS,Information,Hosting,URL,Price,Seller) VALUES('$country','$item_id','$ssl','$tld','$os','$information','$hosting','$url','$price','$seller')");
   if ($result == 1) {
     $errMSG = " Saved Successfully!";
   }
@@ -70,7 +74,8 @@ $item_id = generateRandomString();
 <?php
   
 function show_table(){
-    $result = db_query("SELECT * FROM shell");
+  global $user;
+    $result = db_query("SELECT * FROM shell WHERE Seller = '$user' ");
     return $result; 
   }
 
@@ -395,7 +400,12 @@ function show_table(){
 
                 <div class="form-group">
                   <label>URL</label>
-                  <input id=""  class="form-control " type="url" name="url" placeholder="URL">
+                  <input id=""  class="form-control " type="url" name="url" placeholder="https://example.com">
+                </div>
+
+                <div class="form-group">
+                  <label>Hosting/owner</label>
+                  <input id=""  class="form-control " type="text" name="hosting" placeholder="Hosting">
                 </div>
               
               <div class="form-group">
@@ -447,7 +457,7 @@ function show_table(){
                             </tr>
                         </thead>
                       <tbody>
-                        <? while ( mysqli_fetch_assoc(show_table()) ) : ?>
+                        <?php $ok = mysqli_fetch_assoc(show_table()) ?>
 
                           <?php foreach ( show_table() as $row) :?>
                             <tr>
@@ -458,8 +468,8 @@ function show_table(){
                                 <td><?php echo $row['TLD']; ?> </td>
                                 <td><?php echo $row['OS']; ?> </td>
                                 <td><?php echo $row['Information']; ?> </td>
-                                <td><?php echo $row['URL']; ?> </td>
                                 <td><?php echo $row['Hosting']; ?> </td>
+                                <td><?php echo $row['URL']; ?> </td>
                                 <td><button id='btnCheck67855' onclick='checkItem(67855)' type='button' class='btn btn-block btn-secondary btn-sm'>Check</button></td>
                                 <td>$<?php echo $row['Price']; ?> </td>
                                 <td><?php echo $row['Seller']; ?> </td>
@@ -479,8 +489,6 @@ function show_table(){
                             </tr>
                            
                          <?php endforeach;?>
-
-                       <? endwhile; ?>
 
                         </tbody>
                       </table>

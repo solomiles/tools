@@ -56,7 +56,8 @@ $item_id = generateRandomString();
 
   
 function show_table(){
-    $result = db_query("SELECT * FROM email_list");
+  global $user;
+    $result = db_query("SELECT * FROM email_list WHERE Seller = '$user' ");
     return $result; 
   }
 
@@ -412,7 +413,7 @@ function show_table(){
                             </tr>
                         </thead>
                       <tbody>
-                        <? while ( mysqli_fetch_assoc(show_table()) ) : ?>
+                        <?php $ok = mysqli_fetch_assoc(show_table()) ?>
 
                           <?php foreach ( show_table() as $row) :?>
 
@@ -439,8 +440,6 @@ function show_table(){
                           </tr>
 
                         <?php endforeach;?>
-
-                       <? endwhile; ?>
 
                         </tbody>
                       </table>

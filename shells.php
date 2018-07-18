@@ -41,6 +41,7 @@ function show_table(){
                       <table id="example" class="table table-striped table-bordered table-responsive table-hover table-condensed" style="width:100%">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Country</th>
                                 <th>SSL</th>
                                 <th>TLD</th>
@@ -56,17 +57,18 @@ function show_table(){
                             </tr>
                         </thead>
                       <tbody>
-                        <? while ( mysqli_fetch_assoc(show_table()) ) : ?>
+                        <?php $ok = mysqli_fetch_assoc(show_table()) ?>
 
                           <?php foreach ( show_table() as $row) :?>
                             <tr>
-                                                            
+                                  
+                                <td><?php echo $row['Item_id']; ?> </td>                          
                                 <td><?php echo $row['Country']; ?> </td>
                                 <td><?php echo $row['Shell_ssl']; ?> </td>
                                 <td><?php echo $row['TLD']; ?> </td>
                                 <td><?php echo $row['OS']; ?> </td>
                                 <td><?php echo $row['Information']; ?> </td>
-                                <td>S<?php echo $row['Hosting']; ?> </td>
+                                <td><?php echo $row['Hosting']; ?> </td>
                                 <td><button id='btnCheck67855' onclick='checkItem(67855)' type='button' class='btn btn-block btn-secondary btn-sm'>Check</button></td>
                                 <td>$<?php echo $row['Price']; ?> </td>
                                 <td><?php echo $row['Seller']; ?> </td>
@@ -76,7 +78,7 @@ function show_table(){
                            
                          <?php endforeach;?>
 
-                       <? endwhile; ?>
+                      
 
                         </tbody>
                       </table>

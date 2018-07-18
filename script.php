@@ -44,6 +44,7 @@ function show_table(){
                       <table id="example" class="table table-striped table-bordered table-responsive table-hover table-condensed" style="width:100%">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Verification</th>
                                 <th>Name</th>
                                 <th>Description</th>
@@ -55,12 +56,12 @@ function show_table(){
                             </tr>
                         </thead>
                       <tbody>
-                         <? while ( mysqli_fetch_assoc(show_table()) ) : ?>
+                         <?php $ok = mysqli_fetch_assoc(show_table()) ?>
 
                           <?php foreach ( show_table() as $row) :?>
 
                           <tr>
-                              
+                              <td><?php echo $row['Item_id']; ?> </td>
                               <td><span class="tag tag-success tag-pil"><?php echo $row['Verification']; ?></span></td>
                               <td><?php echo $row['Name']; ?></td>
                               <td><?php echo $row['Description']; ?></td>
@@ -72,8 +73,7 @@ function show_table(){
 
                         <?php endforeach;?>
 
-                       <? endwhile; ?>
-
+                      
                         </tbody>
                       </table>
                     </div>
