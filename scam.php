@@ -9,12 +9,6 @@ function show_table(){
     return $result; 
   }
 
-   // function show($id)
-   //  {
-   //      //
-   //      $check = Staff::find($id);
-   //      return view('Hrm.show',compact('staff'));
-   //  }
 
 ?>
 
@@ -73,7 +67,7 @@ function show_table(){
                               <td>$<?php echo $row['Price']; ?></td>
                               <td><?php echo $row['Seller']; ?></td>
                               <td><?php echo $row['Created_at']; ?></td>
-                              <td><?php echo "<a href='buy.php?id={$row["id"]}'> <button type='button' class='btn btn-block btn-secondary btn-sm'>Buy</button></a> "?></td>
+                              <td><?php echo "<a href='buy.php?item_id={$row["Item_id"]}'> <button type='button' class='btn btn-block btn-secondary btn-sm'>Buy</button></a> "?></td>
                           </tr>
 
                         <?php endforeach;?>

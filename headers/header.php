@@ -6,7 +6,7 @@
   $errMSG ='';
   $today_date = date('D, M Y');
  // if session is not set this will redirect to login page
-   if($_SESSION['user']=="" ) {
+   if($_SESSION['user'] =="" ) {
     header("Location: login.php");
 
    }else {
@@ -106,7 +106,7 @@
                 <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="mr-1">Hello,
                   <span class="user-name text-bold-700"><?php echo $user; ?></span>
                 </span><span class="avatar avatar-online"><img src="app-assets/images/portrait/small/user 160x160.png" alt="avatar"></span><span class="user-name"></span></a>
-                <div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item"><i class="icon-head"></i> Edit Profile</a><a href="#" class="dropdown-item"><i class="icon-mail6"></i> My Orders</a><a href="#" class="dropdown-item"><i class="icon-clipboard2"></i> My Tickets</a>
+                <div class="dropdown-menu dropdown-menu-right"><a href="edit-profile.php" class="dropdown-item"><i class="icon-head"></i> Edit Profile</a><a href="order.php" class="dropdown-item"><i class="icon-mail6"></i> My Orders</a><a href="#" class="dropdown-item"><i class="icon-clipboard2"></i> My Tickets</a>
                   <div class="dropdown-divider"></div><a href="logout.php" class="dropdown-item"><i class="icon-power3"></i> Logout</a>
                 </div>
               </li>

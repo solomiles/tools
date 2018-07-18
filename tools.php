@@ -66,7 +66,7 @@ function show_table(){
                               <td>$<?php echo $row['Price']; ?></td>
                               <td><?php echo $row['Seller']; ?></td>
                               <td><?php echo $row['Created_at']; ?></td>
-                              <td><a href="shells.php?itemid=itemid=67855"> <button type="button" class="btn btn-block btn-secondary btn-sm">Buy</button></a></td>
+                              <td><?php echo "<a href='buy.php?item_id={$row["Item_id"]}'> <button type='button' class='btn btn-block btn-secondary btn-sm'>Buy</button></a> "?></td>
                           </tr>
 
                         <?php endforeach;?>
